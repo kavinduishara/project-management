@@ -1,6 +1,8 @@
 import React from "react";
 import { getMyGroups } from "../../../lib/groupCrud";
 import Image from "next/image";
+import { AiOutlinePlus  } from "react-icons/ai";
+import Link from "next/link";
 
 async function Page() {
   const groups = await getMyGroups();
@@ -45,6 +47,13 @@ async function Page() {
             </div>
           )
         )}
+        <div
+          className="flex flex-col justify-center items-center w-72 h-72 rounded-lg shadow-2xl border-2 border-amber-600 m-4 p-4 bg-amber-400 hover:bg-amber-500"
+        >
+          <Link href={"/create"}>
+             <AiOutlinePlus className="w-32 h-32 text-white" /> 
+          </Link>
+        </div>
       </div>
 
       {groups.length === 0 && <p>No groups found.</p>}
