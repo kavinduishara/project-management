@@ -9,9 +9,7 @@ function Navigation() {
         <div className='text-xl font-bold'><span className='text-orange-500'>Hive</span>Mind</div>
         <div className='flex items-center space-x-4'>
         <SignedIn>
-            <a href="/" className='text-gray-700 hover:text-blue-500'>Home</a>
             <a href="/groups" className='text-gray-700 hover:text-blue-500'>Projects</a>
-            <a href="/create" className='text-gray-700 hover:text-blue-500'>New project</a>
             <UserButton/>
         </SignedIn>
         <SignedOut>
