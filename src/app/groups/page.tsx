@@ -14,7 +14,7 @@ async function Page() {
       <div className="mt-10 flex flex-wrap justify-start mx-20 px-2">
         {groups.map(
           (
-            group: { groupName: string; members: string[] },
+            group: { groupName: string; members: string[],_id:string },
             index: number
           ) => (
             <div
@@ -32,9 +32,11 @@ async function Page() {
                   />
                 </div>
 
-                <h2 className="text-amber-600 m-4 text-lg font-semibold">
-                  {group.groupName}
-                </h2>
+                <Link href={"/group/" +group._id}>
+                  <h2 className="text-amber-600 m-4 text-lg font-semibold">
+                    {group.groupName}
+                  </h2>
+                </Link>
               </div>
 
               {/* Progress bar */}
