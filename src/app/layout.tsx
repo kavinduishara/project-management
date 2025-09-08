@@ -31,7 +31,7 @@ export default function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           <NavigationBar/>
-          <div>
+          <div className="mt-25">
             {children}
           </div>
           
