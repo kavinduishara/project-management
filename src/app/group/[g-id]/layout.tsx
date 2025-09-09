@@ -1,3 +1,4 @@
+import ProjectName from "@/component/ProjectName";
 import VerticleNavBar from "@/component/VerticleNavBar"
 
 type Props = {
@@ -8,6 +9,7 @@ type Props = {
 export default function RootLayout({ children, params }: Props) {
   return (
     <>
+      <ProjectName id={params['g-id']}/>
       <VerticleNavBar params={params} />
       <div className="ml-30">
         {children}

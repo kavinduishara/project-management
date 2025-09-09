@@ -50,3 +50,15 @@ export async function getMyGroups() {
         return [];
     } 
 }
+
+export async function findGroupById(id:string) {
+    await dbConnect();
+    try {
+        const groups = await Group.find({ _id:id });
+        console.log("Groups for member:", groups);
+        return JSON.parse(JSON.stringify(groups)); // serialize for React
+    } catch (error) {
+        console.error("Error fetching groups for member:", error);
+        return [];
+    } 
+}
