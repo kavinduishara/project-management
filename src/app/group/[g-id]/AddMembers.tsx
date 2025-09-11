@@ -23,37 +23,49 @@ function AddMembers({ params }: Props) {
   )
   return (
     <>
-    <div className="flex flex-col justify-center items-center text-center bg-gray-50 p-8">
-      <h1 className="p-4 m-4 font-bold text-4xl text-gray-800">Add Members</h1>
-      <form action={formAction}         
-        className="flex flex-col gap-4 w-full max-w-sm bg-white p-6 rounded-lg shadow-md"
-      >
-        <input
-          type="hidden"
-          name="groupId"
-          value={params['g-id']}
-        />
-        <input
-          type="text"
-          name="MemberName"
-          placeholder="Member Name"
-          required
-          className="border border-gray-300 rounded-md p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
-        />
 
-        <button
-          type="submit"
-          disabled={isPending}
-          className={`bg-orange-500 text-white font-semibold rounded-md p-3 transition-colors ${
-            isPending ? "opacity-50 cursor-not-allowed" : "hover:bg-orange-600"
-          }`}
+        <form
+          action={formAction}
+          className="flex gap-5"
         >
-          {isPending ? "Adding..." : "Add"}
-        </button>
-      </form>
-      {state && state.error && <p>Error: {state.error.message}</p>}
-      {state && state.success && <div>Member added successfully!</div>}
-    </div>
+          <input
+            type="hidden"
+            name="groupId"
+            value={params['g-id']}
+          />
+
+          <input
+            type="text"
+            name="MemberName"
+            placeholder="add member"
+            required
+            className="w-full border border-gray-300 rounded-lg p-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition"
+          />
+
+          <button
+            type="submit"
+            disabled={isPending}
+            className={`w-full bg-orange-500 text-white font-semibold rounded-lg p-3 transition-all duration-200 ${
+              isPending
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-orange-600 active:scale-95"
+            }`}
+          >
+            {isPending ? "Adding..." : "Add"}
+          </button>
+        </form>
+
+        {state && state.error && (
+          <p className="mt-4 text-sm text-red-500 text-center">
+            {state.error.message}
+          </p>
+        )}
+        {state && state.success && (
+          <div className="mt-4 text-sm text-green-600 text-center">
+            ✅ Member added successfully!
+          </div>
+        )}
+
     </>
   )
 }
