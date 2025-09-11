@@ -6,6 +6,7 @@ import Message from "./Message";
 export async function getMessageInGroup(id:string) {
     await dbConnect();
     try {
+        
         const messages = await Message.find({ groupId:id });
         console.log("messagesr:", messages);
         return JSON.parse(JSON.stringify(messages));
@@ -19,7 +20,7 @@ export async function sendMessageToGroup(id: string, message: string) {
   await dbConnect();
   try {
     const user = await currentUser(); 
-    const memberId = user?.id;
+    const memberId = user?.username;
 
     if (!memberId) {
       throw new Error("No authenticated user found");

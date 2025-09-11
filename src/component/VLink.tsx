@@ -15,7 +15,6 @@ const VLink = ({ baseurl, href, label, icon }: VLinkProps) => {
     const path = usePathname();
     const fullPath = `${baseurl}${href ? `/${href}` : ""}`;
     const isActive = path === fullPath;  // exact match
-    console.log(`VLink: baseurl=${baseurl}, href=${href}, fullPath=${fullPath}, currentPath=${path}, isActive=${isActive}`);
     return (
         <Link 
           href={fullPath} 

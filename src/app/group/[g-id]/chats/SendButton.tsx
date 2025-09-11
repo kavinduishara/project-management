@@ -1,5 +1,6 @@
 "use client"
 import { useFormStatus } from "react-dom"
+import { FaPaperPlane } from "react-icons/fa";
 
 
 function SendButton() {
@@ -12,7 +13,8 @@ function SendButton() {
             pending ? "opacity-50 cursor-not-allowed" : "hover:bg-orange-600"
         }`}
     >
-        {pending ? "Sending..." : "Send"}
+        {/* {pending ? "Sending..." : "Send"} */}
+        <FaPaperPlane className="text-2xl"/>
     </button>
 
   )

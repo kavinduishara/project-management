@@ -22,7 +22,8 @@ async function Group({ params }: Props) {
   console.log(resolvedParams['g-id'])
   const groups = await findGroupById(resolvedParams['g-id']);
   const groupMembers = groups.length > 0 ? groups[0].members : "Unknown Group";
-  return <div className="">
+  return (
+  <div className="m-2">
 
     <div>
       {
@@ -36,6 +37,7 @@ async function Group({ params }: Props) {
     </div>
 
   </div>
+  )
 }
 
 
