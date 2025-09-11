@@ -19,11 +19,9 @@ export async function createGroup(groupData:{groupName: string, members: string[
 
 }
 
-export async function addMemberToGroup(groupId: string) {
+export async function addMemberToGroup(groupId: string,memberId: string) {
     await dbConnect();
     try {
-        const user = await currentUser(); 
-        const memberId = user?.id;
         const updatedGroup = await Group.findByIdAndUpdate(
             groupId,
             { $addToSet: { members: memberId } }, // Use $addToSet to avoid duplicates
@@ -41,7 +39,7 @@ export async function getMyGroups() {
     await dbConnect();
     try {
         const user = await currentUser(); 
-        const memberId = user?.id; // Assuming user ID is used as member ID
+        const memberId = user?.username; // Assuming user ID is used as member ID
         const groups = await Group.find({ members: { $in :[memberId]} });
         console.log("Groups for member:", groups);
         return JSON.parse(JSON.stringify(groups)); // serialize for React

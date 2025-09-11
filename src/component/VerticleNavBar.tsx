@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsChatFill } from 'react-icons/bs'
+import { BsChatFill, BsPeople, BsPeopleFill } from 'react-icons/bs'
 import { HiDocument, HiHome } from 'react-icons/hi'
 import { RiTimeFill } from 'react-icons/ri'
 import ProjectName from './ProjectName'
@@ -11,7 +11,8 @@ type Props = {
 
 const navItems = [
   { href: "", label: "Home", icon: <HiHome /> },
-  { href: "meetings", label: "Meetings", icon: <BsChatFill /> },
+  { href: "meetings", label: "Meetings", icon: <BsPeopleFill /> },
+  { href: "chats", label: "Chats", icon: <BsChatFill /> },
   { href: "documents", label: "Documents", icon: <HiDocument /> },
   { href: "timeline", label: "Timeline", icon: <RiTimeFill /> },
 ];
@@ -21,7 +22,6 @@ function VerticleNavBar({ params }: Props) {
 
   return (
     <>
-      <ProjectName id={params['g-id']} />
       <div className="fixed top-20 left-0 h-full w-20 bg-white shadow-md border-r-2 border-amber-400">
         <nav className="flex flex-col items-center p-4 gap-9 justify-between text-xl font-bold">
           {navItems.map((item) => (

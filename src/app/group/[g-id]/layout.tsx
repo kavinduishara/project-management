@@ -1,19 +1,29 @@
 import ProjectName from "@/component/ProjectName";
 import VerticleNavBar from "@/component/VerticleNavBar"
+import { findGroupById } from "../../../../lib/groupCrud";
 
 type Props = {
   children: React.ReactNode;
-  params: { "g-id": string };
+  params: Promise<{ "g-id": string }>;
 };
 
-export default function RootLayout({ children, params }: Props) {
+export default async function RootLayout({ children, params }: Props) {
+    const resolvedParams = await params;
+    const groups = await findGroupById(resolvedParams['g-id']);
+    const group = groups.length > 0 ? groups[0] : "Unknown Group";
+
   return (
     <>
-      <ProjectName id={params['g-id']}/>
-      <VerticleNavBar params={params} />
-      <div className="ml-30">
+      <ProjectName group={group} />      
+      
+      <VerticleNavBar params={resolvedParams} />
+
+      <div className="m-25 h-full w-full bg-gray-100">
         {children}
-      </div>
+      </div>      
+      
     </>
+
+
   );
 }

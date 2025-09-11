@@ -21,7 +21,7 @@ export async function createGroups(pevState:FormState,formData: FormData) {
         throw new Error("Username not found");
     }
     try {
-        const id = author.id;
+        const id = author.username;
         await createGroup({ groupName:groupName,members: [id] });
         return { success: true };
         
