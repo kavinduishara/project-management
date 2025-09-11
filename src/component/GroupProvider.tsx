@@ -1,6 +1,6 @@
-import ProjectName from "@/component/ProjectName";
-import VerticleNavBar from "@/component/VerticleNavBar"
-import { findGroupById } from "../../../../lib/groupCrud";
+"use client";
+
+import { findGroupById } from "../../lib/groupCrud";
 
 type Props = {
   children: React.ReactNode;
@@ -14,13 +14,8 @@ export default async function RootLayout({ children, params }: Props) {
 
   return (
     <>
-      <ProjectName group={group} />      
-      
-      <VerticleNavBar params={resolvedParams} />
 
-      <div className="m-25 h-full w-90 bg-gray-100">
         {children}
-      </div>      
       
     </>
 

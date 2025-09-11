@@ -31,7 +31,7 @@ export async function sendMessageToGroup(id: string, message: string) {
       message: message,
       sentAt: new Date(),   // ✅ set timestamp to now
     });
-
+    console.log(id,message);
     console.log("New Message Sent:", newMessage);
     return JSON.parse(JSON.stringify(newMessage)); 
   } catch (error) {
