@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavigationBar from "@/component/NavigationBar";
 import { ClerkProvider } from "@clerk/nextjs";
+import Button from "@/component/Button";
+import Drawer from "@/component/Drawer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,6 +32,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <Drawer/>
           <NavigationBar/>
           <div className="pt-25 h-screen">
             {children}
