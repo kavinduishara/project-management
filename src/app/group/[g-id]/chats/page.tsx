@@ -8,13 +8,11 @@ type Props = {
 }
 
 async function Chats({ params }: Props) {
-  console.log("Chats page rendered with params:");
   const resolvedParams = await params;
-  console.log(resolvedParams['g-id'])
   const messages=await getMessageInGroup(resolvedParams['g-id']);
 
   const user = await currentUser(); 
-  const memberId = user?.username;
+  const memberId = user?.username || "Unknown";
 
   return (
     <div className="flex flex-col h-full bg-gray-50">
@@ -24,7 +22,7 @@ async function Chats({ params }: Props) {
       </div>
 
       {/* Messages area */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 flex-col-reverse overflow-y-auto p-4 space-y-4">
         {messages.map((message: any) => {
           const isCurrentUser = message.sender === memberId;
           return (
@@ -45,16 +43,12 @@ async function Chats({ params }: Props) {
             </div>
           );
         })}
+
+        <ChatForm params={{ ...resolvedParams }} memberId={memberId} />
       </div>
-
-      {/* Chat input */}
-      {/* <div className="w-full justify-between border-t bg-white p-4">
-        <ChatForm params={resolvedParams} />
-      </div> */}
-      <ChatForm params={resolvedParams} />
+      
+      
     </div>
-
-
   )
 }
 
