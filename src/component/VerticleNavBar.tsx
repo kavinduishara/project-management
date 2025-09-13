@@ -12,9 +12,9 @@ type Props = {
 
 const navItems = [
   { href: "", label: "Home", icon: <HiHome /> },
-  { href: "meetings", label: "Meetings", icon: <BsPeopleFill /> },
+  // { href: "meetings", label: "Meetings", icon: <BsPeopleFill /> },
   { href: "chats", label: "Chats", icon: <BsChatFill /> },
-  { href: "documents", label: "Documents", icon: <HiDocument /> },
+  // { href: "documents", label: "Documents", icon: <HiDocument /> },
   { href: "timeline", label: "Timeline", icon: <RiTimeFill /> },
   { href: "board", label: "Board", icon: <TfiBlackboard /> },
   
