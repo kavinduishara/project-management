@@ -19,10 +19,10 @@ function Timeline() {
   //     };
   //   }, [params['g-id']]);
   return (
-    <div className="p-5 bg-white h-full">
-      <h1 className="text-2xl font-bold mb-4">Timeline</h1>
-      {/* Meeting content goes here */}
-      
+    <div>
+        <div className="p-4 border-b bg-white shadow-md">
+          <h1 className="text-2xl font-bold text-gray-800">Timeline</h1>
+        </div>
     </div>
   )
 }
