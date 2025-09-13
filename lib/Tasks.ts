@@ -1,5 +1,15 @@
 import mongoose,{Schema} from "mongoose";
 
+export type TaskType={
+    groupID:string,
+    taskName:string,
+    preRequsitse?:string[],
+    assignedTo?:string[],
+    status?:'To Do' | 'In Progress' | 'Done',
+    createdAt?:Date,
+    duration?:number,
+}
+
 const TaskSchema=new Schema({
     groupID:{
         type:String,
