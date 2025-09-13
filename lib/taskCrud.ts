@@ -1,4 +1,3 @@
-import { currentUser } from "@clerk/nextjs/server";
 import dbConnect from "./dbConnect";
 import Task,{TaskType} from "./Tasks";
 
@@ -48,4 +47,3 @@ export async function addTask(task: TaskType) {
     return null;
   } 
 }
-
