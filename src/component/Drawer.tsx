@@ -15,7 +15,7 @@ function Drawer() {
                 drawer?<BiArrowFromRight className='rotate-180'/>:<BiArrowFromRight />
             }
         </button>
-        <div className={`h-screen ${drawer?"w-100":"w-0"} z-max bg-white border-l-2 border-gray-200 tansition-all duration-300 ease-in-out overflow-hidden flex flex-col gap-1 p-4`}>
+        <div className={`h-screen ${drawer?"w-100":"w-10"} z-max bg-white border-l-2 border-gray-200 tansition-all duration-300 ease-in-out overflow-hidden flex flex-col gap-1 p-4`}>
             <div className={`${drawer?"visble":"hidden"}`}>
                 <h1 className='text-center text-4xl font-bold border-b-2'>Asistant</h1>
                 <div className='mt-10 overflow-y-scroll h-14/20'>

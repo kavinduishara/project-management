@@ -26,6 +26,22 @@ io.on('connection', (socket) => {
     socket.to(data.roomId).emit('receive_msg', data)
   })
 
+  socket.on('start_draw', (data) => {
+    console.log('Drawing started', data)
+    socket.to(data.roomId).emit('start_draw_other', data)
+  })
+
+  socket.on('draw', (data) => {
+    console.log('Drawing', data)
+    socket.to(data.roomId).emit('draw_other', data)
+  })
+
+  socket.on('stop_draw', (data) => {
+    console.log('Drawing stopped', data)
+    socket.to(data.roomId).emit('stop_draw_other', data)
+  })
+
+
   socket.on('disconnect', () => {
     console.log('A user disconnected:', socket.id)
   })
