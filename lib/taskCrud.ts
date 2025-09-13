@@ -24,7 +24,8 @@ export async function updateTask(id:string,task:TaskType) {
             assignedTo: task.assignedTo,
             duration: task.duration,
             preRequsitse: task.preRequsitse,
-            taskName: task.taskName            
+            taskName: task.taskName,
+            progress: task.progress
            } });
         console.log("tasks", tasks);
         return JSON.parse(JSON.stringify(tasks));

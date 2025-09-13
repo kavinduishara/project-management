@@ -8,6 +8,7 @@ export type TaskType={
     status?:'To Do' | 'In Progress' | 'Done',
     createdAt?:Date,
     duration?:number,
+    progress?:number,
 }
 
 const TaskSchema=new Schema({
@@ -39,6 +40,11 @@ const TaskSchema=new Schema({
     duration:{
         type:Number,
         required:false,
+    },
+    progress:{
+        type:Number,
+        required:false,
+        default:0,
     }
 })
 
