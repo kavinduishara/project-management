@@ -7,7 +7,6 @@ export async function getTasksInGroup(id:string) {
     await dbConnect();
     try {
         const tasks = await Task.find({ groupID:id });
-        console.log("tasks", tasks);
         return JSON.parse(JSON.stringify(tasks));
     } catch (error) {
         console.error("Error fetching groups for member:", error);
@@ -18,7 +17,6 @@ export async function getAllTasks() {
     await dbConnect();
     try {
         const tasks = await Task.find();
-        console.log("tasks", tasks);
         return JSON.parse(JSON.stringify(tasks));
     } catch (error) {
         console.error("Error fetching groups for member:", error);
@@ -27,8 +25,11 @@ export async function getAllTasks() {
 }
 
 export async function changeTask(id:string,task:TaskType) {
+    console.log("change task pre requests",task.preRequsitse)
     await dbConnect();
+    console.log("change task")
     try {
+        console.log("change task")
         const tasks = await Task.updateOne({ _id:id }, 
           { $set: { status: task.status,
             assignedTo: task.assignedTo,
@@ -37,7 +38,6 @@ export async function changeTask(id:string,task:TaskType) {
             taskName: task.taskName,
             progress: task.progress
            } });
-        console.log("tasks", tasks);
         return JSON.parse(JSON.stringify(tasks));
     } catch (error) {
         console.error("Error fetching groups for member:", error);
@@ -61,7 +61,6 @@ export async function getTaskById(id:string) {
     await dbConnect();
     try {
         const tasks = await Task.find({ _id:id });
-        console.log("tasks", tasks);
         return JSON.parse(JSON.stringify(tasks));
     } catch (error) {
         console.error("Error fetching groups for member:", error);

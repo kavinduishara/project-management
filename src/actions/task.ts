@@ -15,7 +15,7 @@ export async function createTask(prevState: FormState, formData: FormData) {
     console.log("FormData entries:");
     const groupID = formData.get("groupId") as string;
     const taskName = formData.get("title") as string;
-    const preRequsitse = formData.getAll("preRequsitse") as string[];
+    const preRequsitse = formData.getAll("prerequest") as string[];
     const assignedTo = formData.getAll("members") as string[];
     const status = formData.get("status") as 'To Do' | 'In Progress' | 'Done';
     const durationStr = formData.get("duration") as string;
@@ -71,7 +71,7 @@ export async function updateTask(prevState: FormState, formData: FormData) {
     const groupID = formData.get("groupId") as string;
     const taskName = formData.get("title") as string;
     const task = formData.get("task") as string;
-    const preRequsitse = formData.getAll("preRequsitse") as string[];
+    const preRequsitse = formData.getAll("prerequest") as string[];
     const assignedTo = formData.getAll("members") as string[];
     const status = formData.get("status") as 'To Do' | 'In Progress' | 'Done';
     const durationStr = formData.get("duration") as string;

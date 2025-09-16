@@ -20,12 +20,6 @@ type Props = {
 
 function TaskForm({tasksList,members,groupId,task}: Props) {
 
-
-    const [localTasks, setLocalTasks] = useState(tasksList);
-    console.log(task)
-
-    
-
     const initialState: FormState = {
       error: undefined,
       success: undefined,
@@ -38,42 +32,94 @@ function TaskForm({tasksList,members,groupId,task}: Props) {
 
 
   return (
-    <div>
-        <form className="flex flex-col gap-4 p-4" action={formAction}>
-            <h1>Add New Entry</h1>
-            <input 
-                type="text" 
-                placeholder="Title" 
-                name="title"
-                defaultValue={task.taskName}
-                required
-            />
-            <input type="hidden" name='groupId' value={groupId} />
-            <input type="hidden" name='task' value={task._id} />
-            <select name='taskId' multiple defaultValue={task.preRequsitse}>
-                {localTasks.map((task:{_id:string,taskName:string})=>
-                  <option key={task._id} value={task._id}>{task.taskName}</option>
-                )}
-            </select>
-            <select name='members' required defaultValue={task.assignedTo[0]}>
-                {members.map((member:string)=>
-                  <option key={member} value={member}>{member}</option>
-                )}
-            </select>
-            <input type="number" placeholder="Duration (hours)" name='duration' defaultValue={task.duration} />
-            <select defaultValue={task.duration} name='status' required>
-                <option value="To Do">To Do</option>
-                <option value="In Progress">In Progress</option>
-                <option value="Done">Done</option>
-            </select>
+    <div className="max-w-lg mx-auto mt-8">
+  <form
+    className="flex flex-col gap-4 p-6 bg-white rounded-xl shadow-md"
+    action={formAction}
+  >
+    <h1 className="text-xl font-semibold text-gray-800">Add New Entry</h1>
 
-            <button type="submit" disabled={isPending}>Add Entry</button>
-            {state.error && <p className="text-red-500">Error: {state.error.message}</p>}
-            {state.success && redirect("group/"+groupId+"/timeline")}
-            {isPending && <p className="text-blue-500">Adding task...</p>}
+    <input
+      type="text"
+      placeholder="Title"
+      name="title"
+      defaultValue={task.taskName}
+      required
+      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
 
-        </form>
-    </div>
+    <input type="hidden" name="groupId" value={groupId} />
+    <input type="hidden" name="task" value={task._id} />
+
+    <label className="text-sm text-gray-600 font-medium">Prerequisites</label>
+    <select
+      name="prerequest"
+      multiple
+      defaultValue={task.preRequsitse}
+      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+        <option value={""}>
+          -no prerequests-
+        </option>
+      {tasksList.map((task: { _id: string; taskName: string }) => (
+        <option key={task._id} value={task._id}>
+          {task.taskName}
+        </option>
+      ))}
+    </select>
+
+    <label className="text-sm text-gray-600 font-medium">Assigned To</label>
+    <select
+      name="members"
+      required
+      defaultValue={task.assignedTo[0]||""}
+      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+        <option value={""}>
+          -no members-
+        </option>
+      {members.map((member: string) => (
+        <option key={member} value={member}>
+          {member}
+        </option>
+      ))}
+    </select>
+
+    <input
+      type="number"
+      placeholder="Duration (hours)"
+      name="duration"
+      defaultValue={task.duration}
+      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+
+    <label className="text-sm text-gray-600 font-medium">Status</label>
+    <select
+      defaultValue={task.status}
+      name="status"
+      required
+      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      <option value="To Do">To Do</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Done">Done</option>
+    </select>
+
+    <button
+      type="submit"
+      disabled={isPending}
+      className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition"
+    >
+      {isPending ? "Saving..." : "Save Entry"}
+    </button>
+
+    {state.error && (
+      <p className="text-red-500 text-sm">Error: {state.error.message}</p>
+    )}
+    {state.success && redirect("../timeline")}
+  </form>
+</div>
+
   )
 }
 
