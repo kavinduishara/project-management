@@ -26,7 +26,7 @@ export async function getAllTasks() {
     } 
 }
 
-export async function updateTask(id:string,task:TaskType) {
+export async function changeTask(id:string,task:TaskType) {
     await dbConnect();
     try {
         const tasks = await Task.updateOne({ _id:id }, 
@@ -55,4 +55,16 @@ export async function addTask( task: TaskType) {
     console.log(error)
     return null;
   } 
+}
+
+export async function getTaskById(id:string) {
+    await dbConnect();
+    try {
+        const tasks = await Task.find({ _id:id });
+        console.log("tasks", tasks);
+        return JSON.parse(JSON.stringify(tasks));
+    } catch (error) {
+        console.error("Error fetching groups for member:", error);
+        return [];
+    } 
 }

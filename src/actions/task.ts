@@ -1,6 +1,7 @@
 "use server";
 
-import { addTask } from "../../lib/taskCrud";
+import { redirect } from "next/dist/server/api-utils";
+import { addTask,changeTask } from "../../lib/taskCrud";
 import { TaskType } from "../../lib/Tasks";
 
 export type FormState = {
@@ -69,6 +70,7 @@ export async function updateTask(prevState: FormState, formData: FormData) {
     console.log("FormData entries:");
     const groupID = formData.get("groupId") as string;
     const taskName = formData.get("title") as string;
+    const task = formData.get("task") as string;
     const preRequsitse = formData.getAll("preRequsitse") as string[];
     const assignedTo = formData.getAll("members") as string[];
     const status = formData.get("status") as 'To Do' | 'In Progress' | 'Done';
@@ -102,7 +104,7 @@ export async function updateTask(prevState: FormState, formData: FormData) {
 
 
     try {
-        const newTask= await addTask({
+        const newTask= await changeTask(task,{
             groupID,
             taskName,
             preRequsitse,
@@ -112,7 +114,7 @@ export async function updateTask(prevState: FormState, formData: FormData) {
             duration,
             progress,
         });
-        return { newOne:newTask  };
+        return { success:true  };
     } catch (error) {
         return { error: new Error("Failed to create task") };
     }

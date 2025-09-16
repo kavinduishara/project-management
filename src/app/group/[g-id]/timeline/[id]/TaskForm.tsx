@@ -1,8 +1,9 @@
 "use client"
 
 import React, { useActionState,useEffect,useState } from 'react'
-import { createTask, FormState } from '@/actions/task';
+import { updateTask, FormState } from '@/actions/task';
 import { TaskType } from '../../../../../../lib/Tasks';
+import { redirect } from 'next/navigation';
 
 
 type TasksType = {
@@ -21,6 +22,7 @@ function TaskForm({tasksList,members,groupId,task}: Props) {
 
 
     const [localTasks, setLocalTasks] = useState(tasksList);
+    console.log(task)
 
     
 
@@ -30,15 +32,10 @@ function TaskForm({tasksList,members,groupId,task}: Props) {
       newOne:undefined
     };
     const  [state,formAction,isPending]=useActionState(
-      createTask,
+      updateTask,
       initialState
     )
 
-    useEffect(() => {
-      if (state.newOne) {
-        setLocalTasks(prev => [...prev, state.newOne]);
-      }
-    }, [state.newOne]);
 
   return (
     <div>
@@ -52,13 +49,13 @@ function TaskForm({tasksList,members,groupId,task}: Props) {
                 required
             />
             <input type="hidden" name='groupId' value={groupId} />
-            <input type="hidden" name='task' value={task.} />
+            <input type="hidden" name='task' value={task._id} />
             <select name='taskId' multiple defaultValue={task.preRequsitse}>
                 {localTasks.map((task:{_id:string,taskName:string})=>
                   <option key={task._id} value={task._id}>{task.taskName}</option>
                 )}
             </select>
-            <select name='members' required defaultValue={task.assignedTo}>
+            <select name='members' required defaultValue={task.assignedTo[0]}>
                 {members.map((member:string)=>
                   <option key={member} value={member}>{member}</option>
                 )}
@@ -72,7 +69,7 @@ function TaskForm({tasksList,members,groupId,task}: Props) {
 
             <button type="submit" disabled={isPending}>Add Entry</button>
             {state.error && <p className="text-red-500">Error: {state.error.message}</p>}
-            {state.newOne && <p className="text-green-500">Task added successfully!</p>}
+            {state.success && redirect("group/"+groupId+"/timeline")}
             {isPending && <p className="text-blue-500">Adding task...</p>}
 
         </form>
