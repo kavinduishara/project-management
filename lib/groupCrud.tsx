@@ -41,7 +41,6 @@ export async function getMyGroups() {
         const user = await currentUser(); 
         const memberId = user?.username; // Assuming user ID is used as member ID
         const groups = await Group.find({ members: { $in :[memberId]} });
-        console.log("Groups for member:", groups);
         return JSON.parse(JSON.stringify(groups)); // serialize for React
     } catch (error) {
         console.error("Error fetching groups for member:", error);
@@ -53,7 +52,7 @@ export async function findGroupById(id:string) {
     await dbConnect();
     try {
         const groups = await Group.find({ _id:id });
-        console.log("Groups for member:", groups);
+        // console.log("Groups for member:", groups);
         return JSON.parse(JSON.stringify(groups)); // serialize for React
     } catch (error) {
         console.error("Error fetching groups for member:", error);

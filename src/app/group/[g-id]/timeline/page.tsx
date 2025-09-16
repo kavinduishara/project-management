@@ -1,16 +1,15 @@
-import Link from 'next/link';
-import React, { useRef,useState } from 'react'
+type Props = {
+  params: Promise<{ "g-id": string }>;
+};
 
-function Timeline() {
+
+async function Timeline({  params }: Props) {
+  const resolvedParams = await params;
+  const groupId = resolvedParams['g-id'];
+
   return (
     <div>
-          <h1 className="text-2xl font-bold text-gray-800 text-center">Table</h1>
-<Link
-          href={"timeline/chart"}
-          className="inline-block px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-        >
-          Switch to Chart View
-        </Link>
+      group id is {groupId}
     </div>
   )
 }

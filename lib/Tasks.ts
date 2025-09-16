@@ -48,6 +48,6 @@ const TaskSchema=new Schema({
     }
 })
 
-const Task=mongoose.models.Group || mongoose.model("Group",TaskSchema);
+const Task=mongoose.models.Task || mongoose.model("Task",TaskSchema);
 
 export default Task;

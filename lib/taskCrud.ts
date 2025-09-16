@@ -6,8 +6,18 @@ import Task,{TaskType} from "./Tasks";
 export async function getTasksInGroup(id:string) {
     await dbConnect();
     try {
-        
-        const tasks = await Task.find({ groupId:id });
+        const tasks = await Task.find({ groupID:id });
+        console.log("tasks", tasks);
+        return JSON.parse(JSON.stringify(tasks));
+    } catch (error) {
+        console.error("Error fetching groups for member:", error);
+        return [];
+    } 
+}
+export async function getAllTasks() {
+    await dbConnect();
+    try {
+        const tasks = await Task.find();
         console.log("tasks", tasks);
         return JSON.parse(JSON.stringify(tasks));
     } catch (error) {
@@ -35,16 +45,14 @@ export async function updateTask(id:string,task:TaskType) {
     } 
 }
 
-export async function addTask(task: TaskType) {
+export async function addTask( task: TaskType) {
   await dbConnect();
   try {
+    const newTask = await Task.create(task);
 
-    const newMessage = await Task.create({
-      task
-    });
-
-    return JSON.parse(JSON.stringify(newMessage)); 
+    return JSON.parse(JSON.stringify(newTask)); 
   } catch (error) {
+    console.log(error)
     return null;
   } 
 }
