@@ -29,7 +29,7 @@ async function Chats({ params }: Props) {
             <div
               key={message._id}
               className={`flex flex-col max-w-md p-4 rounded-2xl shadow ${
-                isCurrentUser ? "ml-auto bg-green-100" : "mr-auto bg-gray-100"
+                isCurrentUser ? "ml-auto bg-sky-100" : "mr-auto bg-gray-100"
               }`}
             >
               <p className="text-gray-600 text-sm mb-2">{message.sender}</p>

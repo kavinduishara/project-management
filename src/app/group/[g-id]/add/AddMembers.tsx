@@ -27,7 +27,7 @@ function AddMembers({ params }: Props) {
           name="MemberName"
           placeholder="Add member"
           required
-          className="flex-1 border border-gray-300 rounded-lg p-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition"
+          className="flex-1 border border-gray-300 rounded-lg p-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition"
         />
 
         <input
@@ -35,16 +35,16 @@ function AddMembers({ params }: Props) {
           name="MemberRole"
           placeholder="Add role"
           required
-          className="flex-1 border border-gray-300 rounded-lg p-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent transition"
+          className="flex-1 border border-gray-300 rounded-lg p-3 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition"
         />
 
         <button
           type="submit"
           disabled={isPending}
-          className={`w-full sm:w-auto bg-green-500 text-white font-semibold rounded-lg p-3 transition-all duration-200 ${
+          className={`w-full sm:w-auto bg-sky-500 text-white font-semibold rounded-lg p-3 transition-all duration-200 ${
             isPending
               ? "opacity-50 cursor-not-allowed"
-              : "hover:bg-green-600 active:scale-95"
+              : "hover:bg-sky-600 active:scale-95"
           }`}
         >
           {isPending ? "Adding..." : "Add"}
@@ -55,7 +55,7 @@ function AddMembers({ params }: Props) {
         <p className="mt-4 text-sm text-red-500 text-center">{state.error.message}</p>
       )}
       {state?.success && (
-        <p className="mt-4 text-sm text-green-600 text-center">✅ Member added successfully!</p>
+        <p className="mt-4 text-sm text-sky-600 text-center">✅ Member added successfully!</p>
       )}
     </>
   );

@@ -25,14 +25,14 @@ function page() {
           name="groupName"
           placeholder="Project Name"
           required
-          className="border border-gray-300 rounded-md p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+          className="border border-gray-300 rounded-md p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent"
         />
 
         <button
           type="submit"
           disabled={isPending}
-          className={`bg-green-500 text-white font-semibold rounded-md p-3 transition-colors ${
-            isPending ? "opacity-50 cursor-not-allowed" : "hover:bg-green-600"
+          className={`bg-sky-500 text-white font-semibold rounded-md p-3 transition-colors ${
+            isPending ? "opacity-50 cursor-not-allowed" : "hover:bg-sky-600"
           }`}
         >
           {isPending ? "Creating..." : "Create Project"}

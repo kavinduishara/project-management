@@ -46,7 +46,7 @@ function TaskForm({ tasksList, members, groupId }: Props) {
             placeholder="Task Title"
             name="title"
             required
-            className="border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400"
           />
           <input type="hidden" name="groupId" value={groupId} />
         </div>
@@ -59,7 +59,7 @@ function TaskForm({ tasksList, members, groupId }: Props) {
             type="number"
             placeholder="Duration"
             name="duration"
-            className="border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400"
           />
         </div>
 
@@ -76,7 +76,7 @@ function TaskForm({ tasksList, members, groupId }: Props) {
                     type="checkbox"
                     name="prerequest"
                     value={task._id}
-                    className="w-4 h-4 accent-green-500"
+                    className="w-4 h-4 accent-sky-500"
                   />
                   <span>{task.taskName}</span>
                 </label>
@@ -92,7 +92,7 @@ function TaskForm({ tasksList, members, groupId }: Props) {
           <select
             name="members"
             required
-            className="border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             {members.map((member) => (
               <option key={member.name} value={member.name}>
@@ -108,7 +108,7 @@ function TaskForm({ tasksList, members, groupId }: Props) {
             defaultValue="To Do"
             name="status"
             required
-            className="border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+            className="border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-sky-400"
           >
             <option value="To Do">To Do</option>
             <option value="In Progress">In Progress</option>
@@ -121,7 +121,7 @@ function TaskForm({ tasksList, members, groupId }: Props) {
           <button
             type="submit"
             disabled={isPending}
-            className="bg-green-500 text-white py-2 px-6 rounded-xl hover:bg-green-600 disabled:opacity-50 transition-all"
+            className="bg-sky-500 text-white py-2 px-6 rounded-xl hover:bg-sky-600 disabled:opacity-50 transition-all"
           >
             {isPending ? "Adding..." : "Add Task"}
           </button>
@@ -134,7 +134,7 @@ function TaskForm({ tasksList, members, groupId }: Props) {
           </p>
         )}
         {state.newOne && (
-          <p className="text-green-600 text-sm md:col-span-2 mt-2">
+          <p className="text-sky-600 text-sm md:col-span-2 mt-2">
             ✅ Task added successfully!
           </p>
         )}

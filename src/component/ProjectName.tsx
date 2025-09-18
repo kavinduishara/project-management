@@ -11,7 +11,7 @@ async function ProjectName({ group }: Props) {
   return (
     <div className="fixed z-50 -mt-20 left-1/2 -translate-x-1/2">
       {group ? (
-        <div className="px-6 py-2 rounded-2xl bg-gradient-to-r from-green-400 to-green-500 text-white font-semibold shadow-lg text-lg">
+        <div className="px-6 py-2 rounded-2xl bg-gradient-to-r from-sky-400 to-sky-500 text-white font-semibold shadow-lg text-lg">
           {groupName}
         </div>
       ) : (
