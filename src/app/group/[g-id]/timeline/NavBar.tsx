@@ -22,8 +22,8 @@ function NavBar({ baseurl }: { baseurl: string }) {
             href={link.href}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               isActive
-                ? "bg-sky-500 text-white shadow-md"
-                : "text-gray-600 hover:text-sky-500 hover:bg-sky-50"
+                ? "bg-green-500 text-white shadow-md"
+                : "text-gray-600 hover:text-green-500 hover:bg-green-50"
             }`}
           >
             {link.label}

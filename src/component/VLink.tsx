@@ -19,7 +19,7 @@ const VLink = ({ baseurl, href, label, icon }: VLinkProps) => {
         <Link 
           href={fullPath} 
           aria-label={label} 
-          className={`w-full p-2 m-2 text-3xl  hover:text-sky-500 ${isActive ? "text-sky-500 border-r-4 border-sky-500 bg-gradient-to-l" : "text-black border-0"} transition-all duration-150`}
+          className={`w-full p-2 m-2 text-3xl  hover:text-green-500 ${isActive ? "text-green-500 border-r-4 border-green-500 bg-gradient-to-l" : "text-black border-0"} transition-all duration-150`}
         >
           {icon}
         </Link>

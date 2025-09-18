@@ -9,8 +9,8 @@ function SendButton() {
     <button
         type="submit"
         disabled={pending}
-        className={`bg-sky-500 text-white font-semibold rounded-xl px-5 py-2 transition-colors ${
-            pending ? "opacity-50 cursor-not-allowed" : "hover:bg-sky-600"
+        className={`bg-green-500 text-white font-semibold rounded-xl px-5 py-2 transition-colors ${
+            pending ? "opacity-50 cursor-not-allowed" : "hover:bg-green-600"
         }`}
     >
         {/* {pending ? "Sending..." : "Send"} */}

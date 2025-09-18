@@ -27,7 +27,7 @@ async function Page() {
               className="flex flex-col justify-between w-72 rounded-lg shadow-xl  m-4 p-4 hover:shadow-3xl"
             >
               <div className="flex items-center">
-                <div className="border-2 rounded-md border-sky-200 w-20 h-20 m-4 flex items-center justify-center">
+                <div className="border-2 rounded-md border-green-200 w-20 h-20 m-4 flex items-center justify-center">
                   <Image
                     src="/hive5.png" // 🔥 place hive.png inside /public
                     alt="Group Icon"
@@ -38,16 +38,16 @@ async function Page() {
                 </div>
 
                 <Link href={"/group/" +group._id}>
-                  <h2 className="text-sky-600 m-4 text-lg font-semibold">
+                  <h2 className="text-green-600 m-4 text-lg font-semibold">
                     {group.groupName}
                   </h2>
                 </Link>
               </div>
 
               {/* Progress bar */}
-              <div className="w-full mt-4 border-sky-500 border-2 h-4 rounded-full overflow-hidden">
+              <div className="w-full mt-4 border-green-500 border-2 h-4 rounded-full overflow-hidden">
                 <div
-                  className="bg-sky-500 h-full"
+                  className="bg-green-500 h-full"
                   style={{ width: "60%" }} // TODO: replace with real progress
                 />
               </div>
@@ -55,7 +55,7 @@ async function Page() {
           )
         )}
         <div
-          className="flex flex-col justify-center items-center w-72 h-72 rounded-lg shadow-2xl border-2 border-sky-600 m-4 p-4 bg-sky-400 hover:bg-sky-500"
+          className="flex flex-col justify-center items-center w-72 h-72 rounded-lg shadow-2xl border-2 border-green-600 m-4 p-4 bg-green-400 hover:bg-green-500"
         >
           <Link href={"/create"}>
              <AiOutlinePlus className="w-32 h-32 text-white" /> 

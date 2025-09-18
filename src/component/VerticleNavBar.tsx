@@ -14,9 +14,7 @@ type Props = {
 const navItems = [
   { href: "", label: "Home", icon: <HiHome /> },
   { href: "timeline", label: "Timeline", icon: <FaTasks/> },
-  // { href: "meetings", label: "Meetings", icon: <BsPeopleFill /> },
   { href: "chats", label: "Chats", icon: <BsChatFill /> },
-  // { href: "documents", label: "Documents", icon: <HiDocument /> },
   { href: "board", label: "Board", icon: <TfiBlackboard /> },
   
 ];
@@ -26,7 +24,7 @@ function VerticleNavBar({ params }: Props) {
 
   return (
     <>
-      <div className="fixed top-20 left-0 h-full w-20 bg-white shadow-md border-r-2 border-sky-400">
+      <div className="fixed top-20 left-0 h-full w-20 bg-white shadow-md border-r-2 border-green-400">
         <nav className="flex flex-col items-center p-4 gap-5 justify-between text-xl font-bold">
           {navItems.map((item) => (
             <VLink 

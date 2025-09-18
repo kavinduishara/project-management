@@ -46,7 +46,7 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
             name="title"
             defaultValue={task.taskName}
             required
-            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
           />
         </div>
 
@@ -59,7 +59,7 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
             type="number"
             name="duration"
             defaultValue={task.duration}
-            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
           />
         </div>
 
@@ -78,7 +78,7 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
             name="prerequest"
             value={t._id}
             defaultChecked={task.preRequsitse?.includes(t._id)}
-            className="w-4 h-4 accent-sky-500"
+            className="w-4 h-4 accent-green-500"
           />
           <span>{t.taskName}</span>
         </label>
@@ -99,7 +99,7 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
           <select
             name="members"
             defaultValue={task.assignedTo?.[0] || ""}
-            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
             <option value="">— No members —</option>
             {members.map((member) => (
@@ -117,7 +117,7 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
             name="status"
             defaultValue={task.status}
             required
-            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500"
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
             <option value="To Do">To Do</option>
             <option value="In Progress">In Progress</option>
@@ -134,7 +134,7 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
           <button
             type="submit"
             disabled={isPending}
-            className="bg-sky-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-sky-600 disabled:opacity-50 transition"
+            className="bg-green-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-green-600 disabled:opacity-50 transition"
           >
             {isPending ? "Saving..." : "Save Changes"}
           </button>

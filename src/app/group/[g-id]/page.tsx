@@ -31,7 +31,7 @@ async function Group({ params }: Props) {
           <h2 className="text-xl font-semibold text-gray-800">Group Members</h2>
           <Link
             href={`/group/${resolvedParams["g-id"]}/add`}
-            className="flex items-center gap-2 bg-sky-500 text-white font-medium px-4 py-2 rounded-xl hover:bg-sky-600 transition"
+            className="flex items-center gap-2 bg-green-500 text-white font-medium px-4 py-2 rounded-xl hover:bg-green-600 transition"
           >
             <BsPlusCircle className="w-5 h-5" /> Add Member
           </Link>

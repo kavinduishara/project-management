@@ -70,7 +70,7 @@ function ChatForm({ params, memberId }: Props) {
             <div
               key={idx}
               className={`flex flex-col max-w-md p-4 rounded-2xl shadow ${
-                isCurrentUser ? "ml-auto bg-sky-100" : "mr-auto bg-gray-100"
+                isCurrentUser ? "ml-auto bg-green-100" : "mr-auto bg-gray-100"
               }`}
             >
               <p className="text-gray-600 text-sm mb-2">{message.sender || message.senderId}</p>
@@ -96,20 +96,20 @@ function ChatForm({ params, memberId }: Props) {
           name="message"
           placeholder="Type a message"
           required
-          className="flex-1 w-full border border-gray-300 rounded-xl px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
+          className="flex-1 w-full border border-gray-300 rounded-xl px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400"
         />
         <input
           type="hidden"
           name="groupId"
           value={params['g-id']}
           required
-          className="flex-1 w-full border border-gray-300 rounded-xl px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
+          className="flex-1 w-full border border-gray-300 rounded-xl px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400"
         />
         <button
           type="submit"
           disabled={isPending}
-          className={`bg-sky-500 text-white font-semibold rounded-md p-3 transition-colors ${
-            isPending ? "opacity-50 cursor-not-allowed" : "hover:bg-sky-600"
+          className={`bg-green-500 text-white font-semibold rounded-md p-3 transition-colors ${
+            isPending ? "opacity-50 cursor-not-allowed" : "hover:bg-green-600"
           }`}
         >
           <FaPaperPlane className="text-2xl"/>
