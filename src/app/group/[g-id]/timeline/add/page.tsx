@@ -12,7 +12,7 @@ async function page({  params }: Props) {
   const groupId = resolvedParams['g-id'];
 
   const tasksList= await getTasksInGroup(groupId);
-  const group= (await findGroupById(groupId))[0];
+  const group= (await findGroupById(groupId));
   const members= group?.members || [];
   const tasks: {_id:string,taskName:string}[] = tasksList.map((task:{_id:string,taskName:string})=>({_id:task._id,taskName:task.taskName}));
 

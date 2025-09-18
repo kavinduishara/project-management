@@ -4,6 +4,11 @@ import Image from "next/image";
 import { AiOutlinePlus  } from "react-icons/ai";
 import Link from "next/link";
 
+type member={
+  name:string,
+  role:string
+}
+
 async function Page() {
   const groups = await getMyGroups();
 
@@ -14,15 +19,15 @@ async function Page() {
       <div className="mt-10 flex flex-wrap justify-start mx-20 px-2">
         {groups.map(
           (
-            group: { groupName: string; members: string[],_id:string },
+            group: { groupName: string; members: member[],_id:string },
             index: number
           ) => (
             <div
               key={`group-${index}`}
-              className="flex flex-col justify-between w-72 rounded-lg shadow-2xl border-2 border-amber-200 m-4 p-4 hover:bg-amber-50"
+              className="flex flex-col justify-between w-72 rounded-lg shadow-2xl border-2 border-green-200 m-4 p-4 hover:bg-green-50"
             >
               <div className="flex items-center">
-                <div className="border-2 rounded-md border-amber-200 w-20 h-20 m-4 flex items-center justify-center">
+                <div className="border-2 rounded-md border-green-200 w-20 h-20 m-4 flex items-center justify-center">
                   <Image
                     src="/hive5.png" // 🔥 place hive.png inside /public
                     alt="Group Icon"
@@ -33,16 +38,16 @@ async function Page() {
                 </div>
 
                 <Link href={"/group/" +group._id}>
-                  <h2 className="text-amber-600 m-4 text-lg font-semibold">
+                  <h2 className="text-green-600 m-4 text-lg font-semibold">
                     {group.groupName}
                   </h2>
                 </Link>
               </div>
 
               {/* Progress bar */}
-              <div className="w-full mt-4 border-orange-500 border-2 h-4 rounded-full overflow-hidden">
+              <div className="w-full mt-4 border-green-500 border-2 h-4 rounded-full overflow-hidden">
                 <div
-                  className="bg-orange-500 h-full"
+                  className="bg-green-500 h-full"
                   style={{ width: "60%" }} // TODO: replace with real progress
                 />
               </div>
@@ -50,7 +55,7 @@ async function Page() {
           )
         )}
         <div
-          className="flex flex-col justify-center items-center w-72 h-72 rounded-lg shadow-2xl border-2 border-amber-600 m-4 p-4 bg-amber-400 hover:bg-amber-500"
+          className="flex flex-col justify-center items-center w-72 h-72 rounded-lg shadow-2xl border-2 border-green-600 m-4 p-4 bg-green-400 hover:bg-green-500"
         >
           <Link href={"/create"}>
              <AiOutlinePlus className="w-32 h-32 text-white" /> 

@@ -6,9 +6,20 @@ const groupSchema=new Schema({
         required:true,
     },
     members:[{
-        type:String,
-        required:true,
-    }],
+      name: {
+        type: String,
+        required: true,
+      },
+      role: {
+        type: String,
+        required: true,
+      },
+      _id: {
+        type: String,
+        required: true,
+      },
+
+    },],
     createdAt:{    
         type:Date,
         default:Date.now,

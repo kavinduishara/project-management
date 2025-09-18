@@ -9,8 +9,7 @@ type Props = {
 
 export default async function RootLayout({ children, params }: Props) {
     const resolvedParams = await params;
-    const groups = await findGroupById(resolvedParams['g-id']);
-    const group = groups.length > 0 ? groups[0] : "Unknown Group";
+    const group = await findGroupById(resolvedParams['g-id']);
 
   return (
     <>

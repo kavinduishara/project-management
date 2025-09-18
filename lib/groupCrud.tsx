@@ -2,7 +2,8 @@ import { currentUser } from "@clerk/nextjs/server";
 import dbConnect from "./dbConnect";
 import Group from "./Group";
 
-export async function createGroup(groupData:{groupName: string, members: string[]}) {
+// Create a group
+export async function createGroup(groupData: { groupName: string, members: { name: string, role: string }[] }) {
     await dbConnect();
     try {
         console.log("Creating group with data:", groupData);
@@ -16,15 +17,15 @@ export async function createGroup(groupData:{groupName: string, members: string[
         console.error("Error creating group:", error);
         return null;
     }
-
 }
 
-export async function addMemberToGroup(groupId: string,memberId: string) {
+// Add member to a group
+export async function addMemberToGroup(groupId: string, member: { name: string, role: string }) {
     await dbConnect();
     try {
         const updatedGroup = await Group.findByIdAndUpdate(
             groupId,
-            { $addToSet: { members: memberId } }, // Use $addToSet to avoid duplicates
+            { $addToSet: { members: member } }, // Avoids duplicates
             { new: true }
         );
         console.log("Member added to group:", updatedGroup);
@@ -35,12 +36,15 @@ export async function addMemberToGroup(groupId: string,memberId: string) {
     }
 }
 
+// Get groups for current user
 export async function getMyGroups() {
     await dbConnect();
     try {
         const user = await currentUser(); 
-        const memberId = user?.username; // Assuming user ID is used as member ID
-        const groups = await Group.find({ members: { $in :[memberId]} });
+        const memberName = user?.username; // Assuming username is stored as `name` in members
+        if (!memberName) return [];
+
+        const groups = await Group.find({ "members.name": memberName });
         return JSON.parse(JSON.stringify(groups)); // serialize for React
     } catch (error) {
         console.error("Error fetching groups for member:", error);
@@ -48,14 +52,14 @@ export async function getMyGroups() {
     } 
 }
 
-export async function findGroupById(id:string) {
+// Find group by ID
+export async function findGroupById(id: string) {
     await dbConnect();
     try {
-        const groups = await Group.find({ _id:id });
-        // console.log("Groups for member:", groups);
-        return JSON.parse(JSON.stringify(groups)); // serialize for React
+        const group = await Group.findById(id);
+        return JSON.parse(JSON.stringify(group)); // serialize for React
     } catch (error) {
-        console.error("Error fetching groups for member:", error);
-        return [];
+        console.error("Error fetching group by ID:", error);
+        return null;
     } 
 }

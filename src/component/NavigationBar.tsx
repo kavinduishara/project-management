@@ -5,7 +5,7 @@ import React from 'react'
 
 function Navigation() {
   return (
-    <div className='fixed w-full top-0 z-49 bg-white shadow-md border-b-2 border-amber-400'>
+    <div className='fixed w-full top-0 z-49 bg-white shadow-md border-b-2 border-green-400'>
     <nav className='flex items-center justify-between  p-4 gap-6'>
         <div className='text-xl font-bold flex items-center'>
           <Image
@@ -14,7 +14,7 @@ function Navigation() {
               width={60}
               height={60}
               className="object-contain"
-            /><span className='text-orange-500'>
+            /><span className='text-green-500'>
           
           Hive</span>Mind</div>
         <div className='flex items-center space-x-4'>
@@ -25,7 +25,7 @@ function Navigation() {
         </SignedIn>
         <SignedOut>
             <SignInButton />
-            <div className="group rounded-lg bg-orange-500 p-2 text-white cursor-pointer hover:bg-orange-600">
+            <div className="group rounded-lg bg-green-500 p-2 text-white cursor-pointer hover:bg-green-600">
               <SignUpButton />
             </div>
 
