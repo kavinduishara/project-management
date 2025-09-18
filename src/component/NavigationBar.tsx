@@ -9,7 +9,7 @@ function Navigation() {
     <nav className='flex items-center justify-between  p-4 gap-6'>
         <div className='text-xl font-bold flex items-center'>
           <Image
-              src="/hive5.png" // 🔥 place hive.png inside /public
+              src="/hive5.png" 
               alt="Group Icon"
               width={60}
               height={60}

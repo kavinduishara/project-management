@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavigationBar from "@/component/NavigationBar";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignedIn } from "@clerk/nextjs";
 import Button from "@/component/Button";
 import Drawer from "@/component/Drawer";
 
@@ -31,8 +31,10 @@ export default function RootLayout({
       <html lang="en">
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <Drawer/>
+        > 
+          <SignedIn>
+            <Drawer/>
+          </SignedIn>
           <NavigationBar/>
           <div className="pt-25 h-screen">
             {children}

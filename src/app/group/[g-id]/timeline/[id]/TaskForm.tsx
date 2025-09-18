@@ -1,126 +1,155 @@
-"use client"
+"use client";
 
-import React, { useActionState,useEffect,useState } from 'react'
-import { updateTask, FormState } from '@/actions/task';
-import { TaskType } from '../../../../../../lib/Tasks';
-import { redirect } from 'next/navigation';
-
+import React, { useActionState } from "react";
+import { updateTask, FormState } from "@/actions/task";
+import { TaskType } from "../../../../../../lib/Tasks";
+import { redirect } from "next/navigation";
 
 type TasksType = {
   _id: string;
 } & TaskType;
 
 type Props = {
-    
-  tasksList: {_id:string,taskName:string}[],
-  members:string[],
-  groupId: string,
-  task:TasksType
+  tasksList: { _id: string; taskName: string }[];
+  members: string[];
+  groupId: string;
+  task: TasksType;
 };
 
-function TaskForm({tasksList,members,groupId,task}: Props) {
+function TaskForm({ tasksList, members, groupId, task }: Props) {
+  const initialState: FormState = {
+    error: undefined,
+    success: undefined,
+    newOne: undefined,
+  };
 
-    const initialState: FormState = {
-      error: undefined,
-      success: undefined,
-      newOne:undefined
-    };
-    const  [state,formAction,isPending]=useActionState(
-      updateTask,
-      initialState
-    )
-
+  const [state, formAction, isPending] = useActionState(
+    updateTask,
+    initialState
+  );
 
   return (
-    <div className="max-w-lg mx-auto mt-8">
-  <form
-    className="flex flex-col gap-4 p-6 bg-white rounded-xl shadow-md"
-    action={formAction}
-  >
-    <h1 className="text-xl font-semibold text-gray-800">Add New Entry</h1>
+    <div className="max-w-3xl mx-auto mt-10">
+      <form
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 bg-white rounded-2xl shadow-lg border border-gray-200"
+        action={formAction}
+      >
+        <h1 className="text-2xl font-bold text-gray-800 md:col-span-2">
+          Edit Task
+        </h1>
 
-    <input
-      type="text"
-      placeholder="Title"
-      name="title"
-      defaultValue={task.taskName}
-      required
-      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
+        {/* Title */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm text-gray-600 font-medium">Title</label>
+          <input
+            type="text"
+            name="title"
+            defaultValue={task.taskName}
+            required
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
 
-    <input type="hidden" name="groupId" value={groupId} />
-    <input type="hidden" name="task" value={task._id} />
+        {/* Duration */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm text-gray-600 font-medium">
+            Duration (hours)
+          </label>
+          <input
+            type="number"
+            name="duration"
+            defaultValue={task.duration}
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
 
-    <label className="text-sm text-gray-600 font-medium">Prerequisites</label>
-    <select
-      name="prerequest"
-      multiple
-      defaultValue={task.preRequsitse}
-      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    >
-        <option value={""}>
-          -no prerequests-
-        </option>
-      {tasksList.map((task: { _id: string; taskName: string }) => (
-        <option key={task._id} value={task._id}>
-          {task.taskName}
-        </option>
+        {/* Prerequisites */}
+        <div className="flex flex-col gap-2 md:col-span-2">
+
+          <div className="flex flex-col gap-2">
+  <label className="text-sm font-medium text-gray-600">Prerequisites</label>
+  <div className="border  border-gray-300 rounded-xl p-3 h-40 overflow-y-auto">
+    {tasksList
+      .filter((t) => t._id !== task._id) // exclude the current task
+      .map((t) => (
+        <label key={t._id} className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="prerequest"
+            value={t._id}
+            defaultChecked={task.preRequsitse?.includes(t._id)}
+            className="w-4 h-4 accent-orange-500"
+          />
+          <span>{t.taskName}</span>
+        </label>
       ))}
-    </select>
-
-    <label className="text-sm text-gray-600 font-medium">Assigned To</label>
-    <select
-      name="members"
-      required
-      defaultValue={task.assignedTo[0]||""}
-      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    >
-        <option value={""}>
-          -no members-
-        </option>
-      {members.map((member: string) => (
-        <option key={member} value={member}>
-          {member}
-        </option>
-      ))}
-    </select>
-
-    <input
-      type="number"
-      placeholder="Duration (hours)"
-      name="duration"
-      defaultValue={task.duration}
-      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    />
-
-    <label className="text-sm text-gray-600 font-medium">Status</label>
-    <select
-      defaultValue={task.status}
-      name="status"
-      required
-      className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-    >
-      <option value="To Do">To Do</option>
-      <option value="In Progress">In Progress</option>
-      <option value="Done">Done</option>
-    </select>
-
-    <button
-      type="submit"
-      disabled={isPending}
-      className="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 disabled:opacity-50 transition"
-    >
-      {isPending ? "Saving..." : "Save Entry"}
-    </button>
-
-    {state.error && (
-      <p className="text-red-500 text-sm">Error: {state.error.message}</p>
+    {tasksList.filter((t) => t._id !== task._id).length === 0 && (
+      <p className="text-gray-400 text-sm">— No prerequisites —</p>
     )}
-    {state.success && redirect("../timeline")}
-  </form>
+  </div>
 </div>
 
-  )
+        </div>
+
+        {/* Assigned To */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm text-gray-600 font-medium">
+            Assigned To
+          </label>
+          <select
+            name="members"
+            defaultValue={task.assignedTo?.[0] || ""}
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          >
+            <option value="">— No members —</option>
+            {members.map((member) => (
+              <option key={member} value={member}>
+                {member}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Status */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm text-gray-600 font-medium">Status</label>
+          <select
+            name="status"
+            defaultValue={task.status}
+            required
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          >
+            <option value="To Do">To Do</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
+          </select>
+        </div>
+
+        {/* Hidden values */}
+        <input type="hidden" name="groupId" value={groupId} />
+        <input type="hidden" name="task" value={task._id} />
+
+        {/* Submit Button */}
+        <div className="md:col-span-2 flex justify-end mt-4">
+          <button
+            type="submit"
+            disabled={isPending}
+            className="bg-orange-500 text-white py-2 px-6 rounded-lg shadow-md hover:bg-orange-600 disabled:opacity-50 transition"
+          >
+            {isPending ? "Saving..." : "Save Changes"}
+          </button>
+        </div>
+
+        {/* Messages */}
+        {state.error && (
+          <p className="text-red-500 text-sm md:col-span-2">
+            ❌ Error: {state.error.message}
+          </p>
+        )}
+        {state.success && redirect("../timeline")}
+      </form>
+    </div>
+  );
 }
 
-export default TaskForm
+export default TaskForm;

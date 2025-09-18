@@ -27,7 +27,7 @@ type Props = {
   tasksList: TasksType[];
 };
 
-async function GanttChart( {tasksList}:Props) {
+function GanttChart( {tasksList}:Props) {
   const taskMap = new Map<string, { start: number; end: number }>();
 
   function getSchedule(task: TasksType): { start: number; end: number } {
@@ -104,7 +104,6 @@ async function GanttChart( {tasksList}:Props) {
 
   return (
     <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Gantt Chart</h2>
       <Bar data={transformedData} options={options} />
     </div>
   );

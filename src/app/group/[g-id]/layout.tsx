@@ -18,7 +18,7 @@ export default async function RootLayout({ children, params }: Props) {
       
       <VerticleNavBar params={resolvedParams} />
 
-      <div className="pl-20 h-full w-full bg-gray-100">
+      <div className="pl-20 h-full w-full ">
         {children}
       </div>      
       
