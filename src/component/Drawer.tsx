@@ -7,7 +7,7 @@ function Drawer() {
     const [drawer,setDrawer]=useState(false);
     const [contains,setContains]=useState("");
   return (
-    <div className={`absolute h-screen ${drawer?"w-110":"w-10"} z-50 flex right-0 top-0 gap-3 justify-between items-center tansition-all duration-300 ease-in-out overflow-hidden`}>
+    <div className={`fixed h-screen ${drawer?"w-110":"w-10"} z-50 flex right-0 top-0 gap-3 justify-between items-center tansition-all duration-300 ease-in-out overflow-hidden`}>
         <button className="h-10 rounded-full shadow-2xl  top-1/2 z-max text-center border-2 border-yellow-300 bg-amber-50 flex items-center justify-center text-amber-300"
         onClick={()=>setDrawer(!drawer)}
         >

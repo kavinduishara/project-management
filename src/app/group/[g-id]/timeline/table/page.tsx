@@ -43,7 +43,7 @@ async function page({params}:Props) {
             {tasksList
               .filter((t:TasksType) => task?.preRequsitse?.includes(t._id))
               .map((t:TasksType) => (
-                <span key={t._id} className="mr-2">{t.taskName}</span>
+                <div key={t._id} className="mr-2">{t.taskName}</div>
             ))}
           </td>
           <td className="p-3">
