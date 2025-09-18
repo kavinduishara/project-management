@@ -24,7 +24,7 @@ async function Page() {
           ) => (
             <div
               key={`group-${index}`}
-              className="flex flex-col justify-between w-72 rounded-lg shadow-2xl border-2 border-sky-200 m-4 p-4 hover:bg-sky-50"
+              className="flex flex-col justify-between w-72 rounded-lg shadow-xl  m-4 p-4 hover:shadow-3xl"
             >
               <div className="flex items-center">
                 <div className="border-2 rounded-md border-sky-200 w-20 h-20 m-4 flex items-center justify-center">

@@ -19,7 +19,7 @@ export default async function RootLayout({ children, params }: Props) {
     <>
       <div className=" h-full w-full ">
         <div className="p-4 border-b bg-white shadow-md">
-            <h1 className="text-2xl font-bold text-gray-800">Time table</h1>
+            <h1 className="text-2xl font-bold text-gray-800">Task Manage</h1>
         </div>
         <NavBar baseurl={baseurl} />
         {children}

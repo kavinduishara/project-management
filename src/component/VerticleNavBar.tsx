@@ -5,6 +5,7 @@ import { RiTimeFill } from 'react-icons/ri'
 import ProjectName from './ProjectName'
 import VLink from './VLink'
 import { TfiBlackboard } from 'react-icons/tfi'
+import { FaTasks } from 'react-icons/fa'
 
 type Props = {
   params: { "g-id": string }
@@ -12,7 +13,7 @@ type Props = {
 
 const navItems = [
   { href: "", label: "Home", icon: <HiHome /> },
-  { href: "timeline", label: "Timeline", icon: <RiTimeFill /> },
+  { href: "timeline", label: "Timeline", icon: <FaTasks/> },
   // { href: "meetings", label: "Meetings", icon: <BsPeopleFill /> },
   { href: "chats", label: "Chats", icon: <BsChatFill /> },
   // { href: "documents", label: "Documents", icon: <HiDocument /> },
