@@ -27,7 +27,7 @@ async function page({params}:Props) {
         <th className="border-b p-3 text-left">Prerequisites</th>
         <th className="border-b p-3 text-left">Status</th>
         <th className="border-b p-3 text-left">Assigned To</th>
-        <th className="border-b p-3 text-left">Progress</th>
+        {/* <th className="border-b p-3 text-left">Progress</th> */}
         <th className="border-b p-3 text-left">Actions</th>
       </tr>
     </thead>
@@ -57,7 +57,7 @@ async function page({params}:Props) {
             </span>
           </td>
           <td className="p-3">{task.assignedTo}</td>
-          <td className="p-3">
+          {/* <td className="p-3">
             <div className="w-full bg-gray-200 rounded-full h-2">
               <div
                 className="bg-blue-500 h-2 rounded-full"
@@ -65,7 +65,7 @@ async function page({params}:Props) {
               ></div>
             </div>
             <span className="text-xs text-gray-500">{task.progress}%</span>
-          </td>
+          </td> */}
           <td className="p-3">
             <div className="flex gap-2">
               <Link

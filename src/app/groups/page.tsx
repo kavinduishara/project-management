@@ -1,8 +1,10 @@
 import React from "react";
 import { getMyGroups } from "../../../lib/groupCrud";
-import Image from "next/image";
 import { AiOutlinePlus  } from "react-icons/ai";
 import Link from "next/link";
+import ProjectCard from "./ProjectCard";
+import { currentUser } from "@clerk/nextjs/server";
+
 
 type member={
   name:string,
@@ -11,6 +13,8 @@ type member={
 
 async function Page() {
   const groups = await getMyGroups();
+  const user = await currentUser(); 
+  const memberName = user?.username;
 
   return (
     <div className="flex flex-col justify-center text-center">
@@ -22,43 +26,14 @@ async function Page() {
             group: { groupName: string; members: member[],_id:string },
             index: number
           ) => (
-            <div
-              key={`group-${index}`}
-              className="flex flex-col justify-between w-72 rounded-lg shadow-xl  m-4 p-4 hover:shadow-3xl"
-            >
-              <div className="flex items-center">
-                <div className="border-2 rounded-md border-green-200 w-20 h-20 m-4 flex items-center justify-center">
-                  <Image
-                    src="/hive5.png" // 🔥 place hive.png inside /public
-                    alt="Group Icon"
-                    width={60}
-                    height={60}
-                    className="object-contain"
-                  />
-                </div>
-
-                <Link href={"/group/" +group._id}>
-                  <h2 className="text-green-600 m-4 text-lg font-semibold">
-                    {group.groupName}
-                  </h2>
-                </Link>
-              </div>
-
-              {/* Progress bar */}
-              <div className="w-full mt-4 border-green-500 border-2 h-4 rounded-full overflow-hidden">
-                <div
-                  className="bg-green-500 h-full"
-                  style={{ width: "60%" }} // TODO: replace with real progress
-                />
-              </div>
-            </div>
+            <ProjectCard key={`group-${index}`} group={group} name={memberName?memberName:"-"}/>
           )
         )}
         <div
-          className="flex flex-col justify-center items-center w-72 h-72 rounded-lg shadow-2xl border-2 border-green-600 m-4 p-4 bg-green-400 hover:bg-green-500"
+          className="flex flex-col justify-center items-center w-1/3 rounded-lg shadow-2xl m-4 p-4 hover:shadow-3xl"
         >
           <Link href={"/create"}>
-             <AiOutlinePlus className="w-32 h-32 text-white" /> 
+             <AiOutlinePlus className="w-25 h-25 text-gray-700" /> 
           </Link>
         </div>
       </div>

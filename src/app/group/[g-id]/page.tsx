@@ -4,6 +4,7 @@ import { findGroupById } from "../../../../lib/groupCrud";
 import MemberCard from "./MemberCard";
 import Link from "next/link";
 import { BsPlusCircle } from "react-icons/bs";
+import { AiOutlinePlus } from "react-icons/ai";
 
 type Props = {
   params: Promise<{ "g-id": string }>;
@@ -29,12 +30,7 @@ async function Group({ params }: Props) {
       <div className="bg-white rounded-2xl shadow p-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-gray-800">Group Members</h2>
-          <Link
-            href={`/group/${resolvedParams["g-id"]}/add`}
-            className="flex items-center gap-2 bg-green-500 text-white font-medium px-4 py-2 rounded-xl hover:bg-green-600 transition"
-          >
-            <BsPlusCircle className="w-5 h-5" /> Add Member
-          </Link>
+          
         </div>
 
         {/* Members Grid */}
@@ -42,6 +38,14 @@ async function Group({ params }: Props) {
           {groups.members.map((member: { name: string; role: string }) => (
             <MemberCard key={member.name} member={member} />
           ))}
+          <div className="flex items-center gap-4 bg-white p-4 rounded-xl shadow hover:shadow-lg transition-shadow justify-center">
+            <Link
+              href={`/group/${resolvedParams["g-id"]}/add`}
+              className="flex items-center gap-2  text-gray-600 font-medium px-4 py-2 rounded-xl hover:text-green-600 transition"
+            >
+              <AiOutlinePlus className="w-25 h-25" /> 
+            </Link>
+          </div>
         </div>
       </div>
     </div>

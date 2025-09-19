@@ -5,7 +5,7 @@ import React from 'react'
 
 function Navigation() {
   return (
-    <div className='fixed w-full top-0 z-49 bg-white shadow-md border-b-2 border-green-400'>
+    <div className='fixed w-full top-0 z-49 bg-white shadow-md border-b-1 border-gray-400'>
     <nav className='flex items-center justify-between  p-4 gap-6'>
         <div className='text-xl font-bold flex items-center'>
           <Image

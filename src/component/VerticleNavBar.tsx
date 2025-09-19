@@ -24,7 +24,7 @@ function VerticleNavBar({ params }: Props) {
 
   return (
     <>
-      <div className="fixed top-20 left-0 h-full w-20 bg-white shadow-md border-r-2 border-green-400">
+      <div className="fixed top-20 left-0 h-full w-20 bg-white shadow-md border-r-1 border-gray-300">
         <nav className="flex flex-col items-center p-4 gap-5 justify-between text-xl font-bold">
           {navItems.map((item) => (
             <VLink 

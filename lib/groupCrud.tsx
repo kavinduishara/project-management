@@ -3,7 +3,7 @@ import dbConnect from "./dbConnect";
 import Group from "./Group";
 
 // Create a group
-export async function createGroup(groupData: { groupName: string, members: { name: string, role: string }[] }) {
+export async function createGroup(groupData: { groupName: string, members: { name: string, role: string,_id: string }[] }) {
     await dbConnect();
     try {
         console.log("Creating group with data:", groupData);

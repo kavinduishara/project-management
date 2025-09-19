@@ -28,7 +28,8 @@ export async function createGroups(prevState: FormState, formData: FormData) {
             members: [
                 {
                     name: id,
-                    role: "admin", // 👈 default role for creator
+                    role: "admin",
+                    _id:author.id
                 },
             ],
         });
