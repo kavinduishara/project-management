@@ -89,7 +89,7 @@ function ChatForm({ params, memberId }: Props) {
       </div>
        <form
         action={formAction}
-        className="bottom-0 left-0 flex gap-3 justify-between w-full bg-white p-3 shadow-md border-t sticky"
+        className="flex left-1/2 -translate-x-1/2 w-1/2 bottom-5 gap-3 justify-between  bg-white p-3 shadow-md rounded-xl fixed"
       >
         <input
           type="text"
