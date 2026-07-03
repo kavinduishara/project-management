@@ -1,0 +1,15 @@
+services:
+  app:
+    build:
+      context: ./
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    environment:
+      NEXT_PUBLIC_SOCKET_URL: http://localhost:3001
+      CLIENT_URL: http://localhost:3000
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest

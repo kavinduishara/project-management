@@ -30,7 +30,7 @@ async function Page() {
           )
         )}
         <div
-          className="flex flex-col justify-center items-center w-1/3 rounded-lg shadow-2xl m-4 p-4 hover:shadow-2xl transition-shadow"
+          className="flex flex-col justify-center items-center rounded-lg shadow-2xl m-4 p-4 hover:shadow-2xl transition-shadow"
         >
           <Link href={"/create"}>
              <AiOutlinePlus className="w-25 h-25 text-gray-700" /> 

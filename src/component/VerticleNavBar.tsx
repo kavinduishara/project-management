@@ -1,8 +1,6 @@
 import React from 'react'
 import { BsChatFill, BsPeople, BsPeopleFill } from 'react-icons/bs'
 import { HiDocument, HiHome } from 'react-icons/hi'
-import { RiTimeFill } from 'react-icons/ri'
-import ProjectName from './ProjectName'
 import VLink from './VLink'
 import { TfiBlackboard } from 'react-icons/tfi'
 import { FaTasks } from 'react-icons/fa'

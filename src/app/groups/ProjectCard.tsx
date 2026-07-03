@@ -37,7 +37,7 @@ async function ProjectCard({group,name}:{group:{ groupName: string; members: mem
   return (
         <div
             
-            className=" w-1/3 flex flex-col justify-center items-center rounded-lg shadow-xl  m-4 p-4 hover:shadow-2xl transition-shadow"
+            className=" flex flex-col justify-center items-center rounded-lg shadow-xl  m-4 p-4 hover:shadow-2xl transition-shadow"
         >
             <div className="flex items-center">
                 <div className=" w-20 h-20 m-4 flex items-center justify-center">

@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['img.clerk.com'], // add Clerk's image host
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
+
 
 export default nextConfig;

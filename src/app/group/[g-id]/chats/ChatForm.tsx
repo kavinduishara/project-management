@@ -22,10 +22,20 @@ function ChatForm({ params, memberId }: Props) {
   const [messages, setMessages] = useState<MessageData[]>([]);
 
   useEffect(() => {
-    socketRef.current = io("http://localhost:3001");
-    socketRef.current.emit("join_room", params['g-id']);
+    const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || `http://${window.location.hostname}:3001`;
+    socketRef.current = io(socketUrl, {
+      transports: ["websocket", "polling"],
+      withCredentials: true,
+    });
 
-    // Listen for new messages
+    socketRef.current.on("connect", () => {
+      socketRef.current?.emit("join_room", params['g-id']);
+    });
+
+    socketRef.current.on("connect_error", (error) => {
+      console.error("Socket connection error:", error.message);
+    });
+
     socketRef.current.on("receive_msg", (msg: MessageData) => {
       setMessages(prev => [...prev, msg]);
     });
