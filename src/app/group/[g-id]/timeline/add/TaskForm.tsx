@@ -13,9 +13,9 @@ function TaskForm({ tasksList, members, groupId }: Props) {
   const [localTasks, setLocalTasks] = React.useState(tasksList);
 
   const initialState: FormState = {
-    error: undefined,
-    success: undefined,
-    newOne: undefined,
+    error: null,
+    success: false,
+    newOne: null,
   };
 
   const [state, formAction, isPending] = useActionState(
@@ -25,7 +25,10 @@ function TaskForm({ tasksList, members, groupId }: Props) {
 
   useEffect(() => {
     if (state.newOne) {
-      setLocalTasks((prev) => [...prev, state.newOne]);
+      setLocalTasks((prev) => [
+        ...prev,
+        { _id: state.newOne!._id, taskName: state.newOne!.taskName },
+      ]);
     }
   }, [state.newOne]);
 
@@ -130,7 +133,7 @@ function TaskForm({ tasksList, members, groupId }: Props) {
         {/* Feedback messages */}
         {state.error && (
           <p className="text-red-500 text-sm md:col-span-2 mt-2">
-            Error: {state.error.message}
+            Error: {state.error}
           </p>
         )}
         {state.newOne && (

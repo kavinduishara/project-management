@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useActionState } from "react";
+import React, { useActionState, useEffect } from "react";
 import { updateTask, FormState } from "@/actions/task";
 import { TaskType } from "../../../../../../lib/Tasks";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type TasksType = {
   _id: string;
@@ -11,22 +11,29 @@ type TasksType = {
 
 type Props = {
   tasksList: { _id: string; taskName: string }[];
-  members: {name:string,role:string}[];
+  members: { name: string; role: string }[];
   groupId: string;
   task: TasksType;
 };
 
 function TaskForm({ tasksList, members, groupId, task }: Props) {
+  const router = useRouter();
   const initialState: FormState = {
-    error: undefined,
-    success: undefined,
-    newOne: undefined,
+    error: null,
+    success: false,
+    newOne: null,
   };
 
   const [state, formAction, isPending] = useActionState(
     updateTask,
     initialState
   );
+
+  useEffect(() => {
+    if (state.success) {
+      router.push("../timeline");
+    }
+  }, [router, state.success]);
 
   return (
     <div className="max-w-3xl mx-auto mt-10">
@@ -38,7 +45,6 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
           Edit Task
         </h1>
 
-        {/* Title */}
         <div className="flex flex-col gap-2">
           <label className="text-sm text-gray-600 font-medium">Title</label>
           <input
@@ -50,7 +56,6 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
           />
         </div>
 
-        {/* Duration */}
         <div className="flex flex-col gap-2">
           <label className="text-sm text-gray-600 font-medium">
             Duration (hours)
@@ -63,35 +68,33 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
           />
         </div>
 
-        {/* Prerequisites */}
         <div className="flex flex-col gap-2 md:col-span-2">
-
           <div className="flex flex-col gap-2">
-  <label className="text-sm font-medium text-gray-600">Prerequisites</label>
-  <div className="border  border-gray-300 rounded-xl p-3 h-40 overflow-y-auto">
-    {tasksList
-      .filter((t) => t._id !== task._id) // exclude the current task
-      .map((t) => (
-        <label key={t._id} className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            name="prerequest"
-            value={t._id}
-            defaultChecked={task.preRequsitse?.includes(t._id)}
-            className="w-4 h-4 accent-green-500"
-          />
-          <span>{t.taskName}</span>
-        </label>
-      ))}
-    {tasksList.filter((t) => t._id !== task._id).length === 0 && (
-      <p className="text-gray-400 text-sm">— No prerequisites —</p>
-    )}
-  </div>
-</div>
-
+            <label className="text-sm font-medium text-gray-600">
+              Prerequisites
+            </label>
+            <div className="border border-gray-300 rounded-xl p-3 h-40 overflow-y-auto">
+              {tasksList
+                .filter((t) => t._id !== task._id)
+                .map((t) => (
+                  <label key={t._id} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      name="prerequest"
+                      value={t._id}
+                      defaultChecked={task.preRequsitse?.includes(t._id)}
+                      className="w-4 h-4 accent-green-500"
+                    />
+                    <span>{t.taskName}</span>
+                  </label>
+                ))}
+              {tasksList.filter((t) => t._id !== task._id).length === 0 && (
+                <p className="text-gray-400 text-sm">No prerequisites</p>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Assigned To */}
         <div className="flex flex-col gap-2">
           <label className="text-sm text-gray-600 font-medium">
             Assigned To
@@ -101,7 +104,7 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
             defaultValue={task.assignedTo?.[0] || ""}
             className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
-            <option value="">— No members —</option>
+            <option value="">No members</option>
             {members.map((member) => (
               <option key={member.name} value={member.name}>
                 {member.name}
@@ -110,7 +113,6 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
           </select>
         </div>
 
-        {/* Status */}
         <div className="flex flex-col gap-2">
           <label className="text-sm text-gray-600 font-medium">Status</label>
           <select
@@ -125,11 +127,9 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
           </select>
         </div>
 
-        {/* Hidden values */}
         <input type="hidden" name="groupId" value={groupId} />
         <input type="hidden" name="task" value={task._id} />
 
-        {/* Submit Button */}
         <div className="md:col-span-2 flex justify-end mt-4">
           <button
             type="submit"
@@ -140,13 +140,11 @@ function TaskForm({ tasksList, members, groupId, task }: Props) {
           </button>
         </div>
 
-        {/* Messages */}
         {state.error && (
           <p className="text-red-500 text-sm md:col-span-2">
-            ❌ Error: {state.error.message}
+            Error: {state.error}
           </p>
         )}
-        {state.success && redirect("../timeline")}
       </form>
     </div>
   );

@@ -2,10 +2,10 @@
 import { currentUser } from "@clerk/nextjs/server";
 import { createGroup } from "../../lib/groupCrud";
 
-export type FormState = {
-    error?: Error;
-    success?: boolean;
-};
+export type FormState = 
+    | { error: Error; success?: undefined }
+    | { success: boolean; error?: undefined }
+    | { error?: undefined; success?: undefined };
 
 export async function createGroups(prevState: FormState, formData: FormData) {
     const groupName = formData.get("groupName") as string;

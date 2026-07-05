@@ -7,9 +7,16 @@ type Props = {
   params: Promise<{ "g-id": string }>
 }
 
+type Message = {
+  _id: string;
+  sender: string;
+  message: string;
+  sentAt: string;
+}
+
 async function Chats({ params }: Props) {
   const resolvedParams = await params;
-  const messages=await getMessageInGroup(resolvedParams['g-id']);
+  const messages: Message[] = await getMessageInGroup(resolvedParams['g-id']);
 
   const user = await currentUser(); 
   const memberId = user?.username || "Unknown";
@@ -23,7 +30,7 @@ async function Chats({ params }: Props) {
 
       {/* Messages area */}
       <div className="flex-1 flex-col-reverse overflow-y-auto p-4 space-y-4">
-        {messages.map((message: any) => {
+        {messages.map((message) => {
           const isCurrentUser = message.sender === memberId;
           return (
             <div

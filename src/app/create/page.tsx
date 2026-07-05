@@ -3,11 +3,10 @@ import React, { useActionState } from 'react'
 import { FormState,createGroups } from '@/actions/groups'
 import { redirect } from 'next/navigation';
 
-function page() {
+function CreatePage() {
 
   const initialState: FormState = {
-    error: undefined,
-    success: undefined,
+    success: false,
   };
   const  [state,formAction,isPending]=useActionState(
     createGroups,
@@ -45,4 +44,4 @@ function page() {
   )
 }
 
-export default page
+export default CreatePage
