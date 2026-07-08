@@ -1,0 +1,39 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - new-dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        run: echo "Checkout step is commented out for now"
+        # uses: actions/checkout@v4
+
+    #   - name: Build Docker image
+    #     run: docker build -t myapp .
+
+    #   - name: Login Docker Hub
+    #     run: docker login ...
+
+    #   - name: Push image
+    #     run: docker push username/myapp:latest
+
+    #   - name: Deploy to EC2
+    #     uses: appleboy/ssh-action@v1
+    #     with:
+    #       host: ${{ secrets.EC2_HOST }}
+    #       username: ubuntu
+    #       key: ${{ secrets.EC2_KEY }}
+    #       script: |
+    #         docker pull username/myapp:latest
+    #         docker stop myapp || true
+    #         docker rm myapp || true
+    #         docker run -d \
+    #           --name myapp \
+    #           -p 3000:3000 \
+    #           username/myapp:latest
