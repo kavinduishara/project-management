@@ -6,12 +6,10 @@ const httpServer = http.createServer()
 
 const io = new Server(httpServer, {
   cors: {
-    origin: 'http://localhost:3000', // Replace with your frontend URL
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['my-custom-header'],
-    credentials: true,
+    origin: "*",
+    methods: ["GET", "POST"],
   },
-})
+});
 
 io.on('connection', (socket) => {
   console.log('A user connected:', socket.id)

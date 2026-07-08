@@ -18,7 +18,7 @@ export default function Page({ params }: Props) {
     // const [messages, setMessages] = useState<MessageData[]>([]);
 
     useEffect(() => {
-  socketRef.current = io("http://localhost:3001");
+  socketRef.current = io("/");
   socketRef.current.emit("join_room", params["g-id"]);
 
   socketRef.current.on("start_draw_other", (data: { x: number; y: number }) => {

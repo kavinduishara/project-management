@@ -22,7 +22,7 @@ function ChatForm({ params, memberId }: Props) {
   const [messages, setMessages] = useState<MessageData[]>([]);
 
   useEffect(() => {
-    socketRef.current = io("http://localhost:3001");
+    socketRef.current = io("/");
     socketRef.current.emit("join_room", params['g-id']);
 
     // Listen for new messages
