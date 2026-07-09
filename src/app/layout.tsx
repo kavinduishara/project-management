@@ -32,9 +32,9 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         > 
-          <SignedIn>
+          {/* <SignedIn>
             <Drawer/>
-          </SignedIn>
+          </SignedIn> */}
           <NavigationBar/>
           <div className="pt-25 h-screen">
             {children}
