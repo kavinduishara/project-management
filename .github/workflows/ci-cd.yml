@@ -9,10 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    env:
-      IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/project-management
-      IMAGE_TAG: ${{ github.sha }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,13 +23,13 @@ jobs:
         run: |
           docker build \
             --build-arg NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }} \
-            -t $IMAGE_NAME:latest \
-            -t $IMAGE_NAME:$IMAGE_TAG .
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/project-management:latest \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/project-management:${{ github.sha }} .
 
       - name: Push Docker images
         run: |
-          docker push $IMAGE_NAME:latest
-          docker push $IMAGE_NAME:$IMAGE_TAG
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/project-management:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/project-management:${{ github.sha }}
 
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1
@@ -42,7 +38,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
           script: |
-            docker pull $IMAGE_NAME:$IMAGE_TAG
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/project-management:${{ github.sha }}
 
             docker stop project-management || true
             docker rm project-management || true
@@ -53,7 +49,7 @@ jobs:
               --name project-management \
               -p 3000:3000 \
               -p 3001:3001 \
-              $IMAGE_NAME:$IMAGE_TAG
+              ${{ secrets.DOCKERHUB_USERNAME }}/project-management:${{ github.sha }}
 
             docker image prune -f
 
