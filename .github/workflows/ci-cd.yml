@@ -39,6 +39,7 @@ jobs:
             docker stop project-management || true
             docker rm project-management || true
             docker run -d \
+              --env-file .env \
               --name project-management \
               -p 3000:3000 \
               -p 3001:3001 \
